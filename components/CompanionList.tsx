@@ -28,9 +28,9 @@ const CompanionList = ({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-lg w-2/3">Lession</TableHead>
-            <TableHead className="text-lg">Subject</TableHead>
-            <TableHead className="text-lg">Duration</TableHead>
+            <TableHead className="text-lg w-2/3 font-bold">Lession</TableHead>
+            <TableHead className="text-lg font-semibold                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ">Subject</TableHead>
+            <TableHead className="text-lg font-semibold                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ">Duration</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -75,8 +75,8 @@ const CompanionList = ({
                 </div>
               </TableCell>
               <TableCell>
-                <div className="flex items-center  w-full gap-2">
-                  <p className="text-2xl">
+                <div className="flex items-center w-full gap-2">
+                  <p className="text-2xl font-medium">
                     {duration}
                     <span className="max-md:hidden ms-1">mins</span>
                   </p>
