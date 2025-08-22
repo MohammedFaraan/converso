@@ -1,8 +1,7 @@
-
 const CompanionLibrary = () => {
   return (
     <main>
-      
+      CompanionLibrary
     </main>
   )
 }
