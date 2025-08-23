@@ -19,7 +19,7 @@ const CompanionCard = ({
   color,
 }: CompanionCardProps) => {
   return (
-    <article className="companion-card" style={{ backgroundColor: color }}>
+    <article className="companion-card hover:shadow-2xl" style={{ backgroundColor: color }}>
       <div className="flex justify-between items-center">
         <div className="subject-badge">{subject}</div>
         <button className="companion-bookmark">
