@@ -3,7 +3,7 @@ import Link from "next/link";
 
 interface CompanionCardProps {
   id: string;
-  title: string;
+  name: string;
   topic: string;
   duration: number;
   subject: string;
@@ -12,7 +12,7 @@ interface CompanionCardProps {
 
 const CompanionCard = ({
   id,
-  title,
+  name,
   topic,
   subject,
   duration,
@@ -32,7 +32,7 @@ const CompanionCard = ({
         </button>
       </div>
       
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h2 className="text-2xl font-bold">{name}</h2>
 
         <p className="text-sm">{topic}</p>
         <div className="flex gap-2">
