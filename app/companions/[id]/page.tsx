@@ -1,4 +1,4 @@
-import CompanionSection from "@/components/CompanionSection";
+import CompanionSection from "@/components/CompanionComponent";
 import { getCompanion } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";

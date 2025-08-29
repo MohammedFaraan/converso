@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, getSubjectColor } from "@/lib/utils";
+import { cn, configureAssistant, getSubjectColor } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import Image from "next/image";
@@ -38,7 +38,7 @@ const CompanionSection = ({
         lottieRef.current?.stop();
       }
     }
-  }, []);
+  }, [isSpeaking, lottieRef]);
 
   useEffect(() => {
     const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
@@ -75,6 +75,27 @@ const CompanionSection = ({
     vapi.setMuted(!isMuted);
     setIsMuted(!isMuted);
   };
+
+  const handleCall = async () => {
+    setCallStatus(CallStatus.CONNECTING);
+
+    const assistantOverrides = {
+      variableValues : {subject, topic, style},
+      clientMessages: ["transcript"],
+      serverMessages: [],
+    }
+
+    // @ts-expect-error
+    vapi.start(configureAssistant(voice, style), assistantOverrides)
+
+  }
+  
+  const handleDisconnect = async () => {
+    setCallStatus(CallStatus.INACTIVE);
+    vapi.stop();
+  }
+
+
 
   return (
     <section className="flex flex-col h-[70vh]">
@@ -134,7 +155,7 @@ const CompanionSection = ({
           <button
             className="btn-mic"
             onClick={toggleMicrophone}
-            disabled={callStatus === CallStatus.ACTIVE}
+            disabled={callStatus != CallStatus.ACTIVE}
           >
             <Image
               src={isMuted ? "/icons/mic-off.svg" : "/icons/mic-on.svg"}
@@ -143,9 +164,12 @@ const CompanionSection = ({
               width={36}
               className="rounded-lg"
             />
-            <p className="max-sm:hidden">
+            <p className="max-sm:hidden ">
               {isMuted ? "Turn on microphone" : "Turn off microphone"}
             </p>
+          </button>
+          <button className={cn("rounded-lg text-white py-2 w-full cursor-pointer transition-colors", callStatus === CallStatus.ACTIVE ? "bg-red-600" : "bg-primary", callStatus === CallStatus.CONNECTING && "animate-pulse")} onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall}>
+              {callStatus === CallStatus.ACTIVE ? "End Session" : callStatus === CallStatus.CONNECTING ? "Connecting..." : "Start Session"}
           </button>
         </div>
       </section>
