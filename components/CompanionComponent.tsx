@@ -27,6 +27,7 @@ const CompanionSection = ({
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [messages, setMessages] = useState<SavedMessage[]>([]);
 
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
@@ -45,7 +46,12 @@ const CompanionSection = ({
 
     const onCallEnd = () => setCallStatus(CallStatus.FINISHED);
 
-    const onMessage = () => {};
+    const onMessage = (message: Message) => {
+      if (message.type === "transcript" && message.transcriptType === "final") {
+        const newMessage = { role: message.role, content: message.transcript };
+        setMessages((prev) => [newMessage, ...prev]);
+      }
+    };
 
     const onError = (error: Error) => console.log("Error", error);
 
@@ -80,22 +86,19 @@ const CompanionSection = ({
     setCallStatus(CallStatus.CONNECTING);
 
     const assistantOverrides = {
-      variableValues : {subject, topic, style},
+      variableValues: { subject, topic, style },
       clientMessages: ["transcript"],
       serverMessages: [],
-    }
+    };
 
     // @ts-expect-error
-    vapi.start(configureAssistant(voice, style), assistantOverrides)
+    vapi.start(configureAssistant(voice, style), assistantOverrides);
+  };
 
-  }
-  
   const handleDisconnect = async () => {
     setCallStatus(CallStatus.INACTIVE);
     vapi.stop();
-  }
-
-
+  };
 
   return (
     <section className="flex flex-col h-[70vh]">
@@ -168,10 +171,46 @@ const CompanionSection = ({
               {isMuted ? "Turn on microphone" : "Turn off microphone"}
             </p>
           </button>
-          <button className={cn("rounded-lg text-white py-2 w-full cursor-pointer transition-colors", callStatus === CallStatus.ACTIVE ? "bg-red-600" : "bg-primary", callStatus === CallStatus.CONNECTING && "animate-pulse")} onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall}>
-              {callStatus === CallStatus.ACTIVE ? "End Session" : callStatus === CallStatus.CONNECTING ? "Connecting..." : "Start Session"}
+          <button
+            className={cn(
+              "rounded-lg text-white py-2 w-full cursor-pointer transition-colors",
+              callStatus === CallStatus.ACTIVE ? "bg-red-600" : "bg-primary",
+              callStatus === CallStatus.CONNECTING && "animate-pulse"
+            )}
+            onClick={
+              callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall
+            }
+          >
+            {callStatus === CallStatus.ACTIVE
+              ? "End Session"
+              : callStatus === CallStatus.CONNECTING
+              ? "Connecting..."
+              : "Start Session"}
           </button>
         </div>
+      </section>
+
+      <section className="transcript">
+        <div className="transcript-message no-scrollbar">
+          {messages.map((message, index) => {
+            if (message.role === "assistant") {
+              return (
+                <p key={index} className="max-sm:text-sm">
+                  {name.split(" ")[0].replace("/[.,]/g", "")} :{" "}
+                  {message.content}
+                </p>
+              );
+            } else {
+              return (
+                <p key={index} className="text-primary max-sm:text-sm">
+                  {userName} : {message.content}
+                </p>
+              );
+            }
+          })}
+        </div>
+
+        <div className="transcript-fade"></div>
       </section>
     </section>
   );
