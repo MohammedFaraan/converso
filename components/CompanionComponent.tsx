@@ -77,7 +77,7 @@ const CompanionSection = ({
   }, []);
 
   const toggleMicrophone = () => {
-    const isMuted = vapi.isMuted;
+    const isMuted = vapi.isMuted();
     vapi.setMuted(!isMuted);
     setIsMuted(!isMuted);
   };
@@ -158,7 +158,7 @@ const CompanionSection = ({
           <button
             className="btn-mic"
             onClick={toggleMicrophone}
-            disabled={callStatus != CallStatus.ACTIVE}
+            disabled={callStatus !== CallStatus.ACTIVE}
           >
             <Image
               src={isMuted ? "/icons/mic-off.svg" : "/icons/mic-on.svg"}

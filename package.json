@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.3",
-    "@hookform/resolvers": "^5.2.1",
+    "@hookform/resolvers": "^3.3.2",
     "@jsmastery/utils": "^1.0.2",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
+    "@sentry/nextjs": "^10.8.0",
     "@supabase/supabase-js": "^2.56.0",
     "@vapi-ai/web": "^2.3.9",
     "class-variance-authority": "^0.7.1",
@@ -26,7 +27,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "tailwind-merge": "^3.3.1",
-    "zod": "^4.0.17"
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
