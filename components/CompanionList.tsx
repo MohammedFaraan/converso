@@ -7,14 +7,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
+import { cn, getSubjectColor } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 interface CompanionListProps {
   title: string;
   companions?: Companion[];
-  classNames: string;
+  classNames?: string;
 }
 
 const CompanionList = ({
@@ -34,14 +34,14 @@ const CompanionList = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {companions?.map(({ id, name, topic, subject, duration, color }) => (
+          {companions?.map(({ id, name, topic, subject, duration }) => (
             <TableRow key={id} className="space-y-2">
               <TableCell className="font-medium">
                 <Link href={`/companions/${id}`}>
                   <div className="flex items-center gap-3">
                     <div
                       className="flex items-center justify-center rounded-lg p-2 max-md:hidden"
-                      style={{ backgroundColor: color }}
+                      style={{ backgroundColor: getSubjectColor(subject) }}
                     >
                       <Image
                         src={`/icons/${subject}.svg`}
@@ -63,7 +63,7 @@ const CompanionList = ({
                 </div>
                 <div
                   className="md:hidden flex items-center justify-center w-fit rounded-lg p-2"
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: getSubjectColor(subject) }}
                 >
                   {" "}
                   <Image

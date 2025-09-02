@@ -19,7 +19,11 @@ const CompanionCard = ({
   color,
 }: CompanionCardProps) => {
   return (
-    <article className="companion-card hover:shadow-2xl" style={{ backgroundColor: color }}>
+    <article
+      key={id}
+      className="companion-card hover:shadow-2xl"
+      style={{ backgroundColor: color }}
+    >
       <div className="flex justify-between items-center">
         <div className="subject-badge">{subject}</div>
         <button className="companion-bookmark">
@@ -31,20 +35,19 @@ const CompanionCard = ({
           />
         </button>
       </div>
-      
+
       <h2 className="text-2xl font-bold">{name}</h2>
 
-        <p className="text-sm">{topic}</p>
-        <div className="flex gap-2">
-            <Image src="/icons/clock.svg" alt="clock" width={13.5} height={13.5}/>
-            <p>{duration} minutes</p>
-        </div>
-      <div >
-
+      <p className="text-sm">{topic}</p>
+      <div className="flex gap-2">
+        <Image src="/icons/clock.svg" alt="clock" width={13.5} height={13.5} />
+        <p>{duration} minutes</p>
+      </div>
+      <div>
         <Link href={`companions/${id}`} className="w-full">
-        <button className="btn-primary w-full justify-center">
+          <button className="btn-primary w-full justify-center">
             Launch Lession
-        </button>
+          </button>
         </Link>
       </div>
     </article>
