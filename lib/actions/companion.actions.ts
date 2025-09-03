@@ -108,8 +108,37 @@ export const getUserCompanions = async (userId: string) => {
     .from("companions")
     .select()
     .eq("author", userId)
-    .order("created_at", { ascending: false })
+    .order("created_at", { ascending: false });
   if (error) throw new Error(error.message);
 
   return data;
+};
+
+export const newCompanionPermissions = async () => {
+  const { userId, has } = await auth();
+  const supabase = createSupabaseClient();
+
+  let limit = 0;
+  if (has({ plan: "pro" })) {
+    return true;
+  } else if (has({ feature: "3_companions_limit" })) {
+    limit = 3;
+  } else if (has({ feature: "10_companions_limit" })) {
+    limit = 10;
+  }
+
+  const { data, error } = await supabase
+    .from("companions")
+    .select("id", { count: "exact" })
+    .eq("author", userId);
+
+  if (error) throw new Error(error.message);
+
+  const dataCount = data?.length;
+
+  if (dataCount >= limit) {
+    return false;
+  } else {
+    return true;
+  }
 };
