@@ -148,9 +148,11 @@ export const addBookmark = async (companionId: string, path: string) => {
   const { userId } = await auth();
   const supabase = createSupabaseClient();
 
-  const { data, error } = await supabase
-    .from("bookmarks")
-    .insert({ companion_id: companionId, user_id: userId });
+  // const { data, error } = await supabase
+  //   .from("bookmarks")
+  //   .insert({ companion_id: companionId, user_id: userId });
+
+  const { data, error } = await supabase.from("companions").update({bookmarked: true }).eq("id", companionId);
 
   if (error) throw new Error(error.message);
 
@@ -164,11 +166,16 @@ export const removeBookmark = async (companionId: string, path: string) => {
   if (!userId) return;
   const supabase = createSupabaseClient();
 
-  const { data, error } = await supabase
-    .from("bookmarks")
-    .delete()
-    .eq("companion_id", companionId)
-    .eq("user_id", userId);
+  // const { data, error } = await supabase
+  //   .from("bookmarks")
+  //   .delete()
+  //   .eq("companion_id", companionId)
+  //   .eq("user_id", userId);
+   const { data, error } = await supabase
+    .from("companions")
+    .update({bookmarked: false })
+    .eq("id", companionId)
+
   if (error) throw new Error(error.message);
 
   revalidatePath(path);

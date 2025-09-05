@@ -4,13 +4,13 @@ import SubjectFilter from "@/components/SubjectFilter";
 import { getAllCompanions } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
 
-const CompanionLibrary = async ({searchParams} : SearchParams) => {
+const CompanionLibrary = async ({ searchParams }: SearchParams) => {
   const filters = await searchParams;
 
-  const subject = filters.subject ? filters.subject : '';
-  const topic = filters.topic ? filters.topic : '';
+  const subject = filters.subject ? filters.subject : "";
+  const topic = filters.topic ? filters.topic : "";
 
-  const companions = await getAllCompanions({subject, topic});
+  const companions = await getAllCompanions({ subject, topic });
 
   return (
     <main>
@@ -21,16 +21,17 @@ const CompanionLibrary = async ({searchParams} : SearchParams) => {
           <SubjectFilter />
         </div>
       </section>
-      <section className="companions-grid">
-        {
-          companions.map((companion, _) => (
-            <CompanionCard key={companion} {...companion} color={getSubjectColor(companion.subject)}/>
-          ))
-        }
-        <p>{topic}</p>
+      <section className="companions-grid mb-3">
+        {companions.map((companion, index) => (
+          <CompanionCard
+            key={index}
+            {...companion}
+            color={getSubjectColor(companion.subject)}
+          />
+        ))}
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default CompanionLibrary
+export default CompanionLibrary;
