@@ -1,6 +1,15 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher([
+  '/companions(.*)'  // Protect `/companions` and any nested paths, e.g. `/companions/foo`
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) {
+    // Automatically redirect unauthorized users to sign‐in
+    await auth.protect();
+  }
+});
 
 export const config = {
   matcher: [
