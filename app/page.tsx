@@ -85,7 +85,7 @@ const LandingPage = () => {
         </div>
         <div className="rounded-lg overflow-hidden shadow-xl border border-border">
           <Image 
-            src="/readme/hero.png" 
+            src="/readme/hero-1.png" 
             alt="Converso Dashboard" 
             width={1200} 
             height={675} 
