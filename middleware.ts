@@ -1,7 +1,8 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 const isProtectedRoute = createRouteMatcher([
-  '/companions(.*)'  // Protect `/companions` and any nested paths, e.g. `/companions/foo`
+  '/companions(.*)',  // Protect `/companions` and any nested paths, e.g. `/companions/foo`
+  '/dashboard'
 ]);
 
 export default clerkMiddleware(async (auth, req) => {

@@ -1,0 +1,89 @@
+/* Landing Page Animations */
+
+/* Feature Card Hover Effects */
+.hover-card {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
+}
+
+.hover-card:hover .icon-container {
+  background-color: var(--primary);
+}
+
+.hover-card:hover .icon-image {
+  filter: brightness(0) invert(1);
+}
+
+/* Tech Item Hover Effects */
+.hover-tech {
+  transform: scale(1);
+}
+
+.hover-tech:hover {
+  transform: scale(1.05);
+  border-color: var(--primary);
+  background-color: var(--primary-foreground);
+}
+
+/* Stat Card Hover Effects */
+.hover-stat {
+  transform: translateY(0);
+}
+
+.hover-stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.hover-stat:hover .stat-icon-container {
+  background-color: var(--primary);
+}
+
+.hover-stat:hover .stat-icon {
+  filter: brightness(0) invert(1);
+}
+
+.hover-stat:hover .stat-number {
+  color: var(--primary);
+}
+
+/* Link Hover Effects */
+.hover-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.hover-link:hover {
+  color: var(--primary);
+}
+
+.hover-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.hover-link:hover::after {
+  width: 100%;
+}
+
+/* Button Hover Effects */
+.rounded-full {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rounded-full:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
