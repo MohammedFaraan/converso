@@ -15,7 +15,7 @@ enum CallStatus {
   FINISHED = "FINISHED",
 }
 
-const CompanionSection = ({
+const CompanionComponent = ({
   name,
   topic,
   subject,
@@ -104,6 +104,7 @@ const CompanionSection = ({
     vapi.stop();
   };
 
+  // console.log(messages);
   return (
     <section className="flex flex-col h-[70vh]">
       <section className="flex gap-8 max-sm:flex-col">
@@ -194,7 +195,7 @@ const CompanionSection = ({
         </div>
       </section>
 
-      <section className="transcript">
+      <section className="transcript ">
         <div className="transcript-message no-scrollbar">
           {messages.map((message, index) => {
             if (message.role === "assistant") {
@@ -220,4 +221,4 @@ const CompanionSection = ({
   );
 };
 
-export default CompanionSection;
+export default CompanionComponent;

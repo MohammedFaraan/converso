@@ -11,7 +11,6 @@ Converso is a sophisticated AI-powered learning platform that enables users to i
 - 💬 Interactive Conversations
 - 📱 Responsive Design
 - 🎯 Topic-based Filtering
-- 🔄 Real-time Updates
 
 ## Tech Stack
 ### Frontend
