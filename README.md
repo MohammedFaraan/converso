@@ -1,7 +1,7 @@
 # Converso - AI Companion Learning Platform
 
 ## Overview
-Converso is a sophisticated AI-powered learning platform that enables users to interact with specialized AI companions across various academic subjects. Each companion is tailored to provide subject-specific guidance, making learning more interactive and personalized.
+Converso is a sophisticated AI-powered voice enabled learning platform that enables users to interact with specialized AI companions across various academic subjects. Each companion is tailored to provide subject-specific guidance, making learning more interactive and personalized.
 
 ## Key Features
 - 🤖 Customizable AI Companions
@@ -14,7 +14,7 @@ Converso is a sophisticated AI-powered learning platform that enables users to i
 
 ## Tech Stack
 ### Frontend
-- Next.js 13 (App Router)
+- Next.js 15 (App Router)
 - TypeScript
 - Tailwind CSS
 - shadcn/ui Components
@@ -42,13 +42,20 @@ Create a `.env.local` file in the root directory with:
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
 
+# Clerk -Security
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
 
-# Sentry (Optional)
-NEXT_PUBLIC_SENTRY_DSN=
+# Vapi
+NEXT_PUBLIC_VAPI_WEB_KEY=
+
+# Sentry
+SENTRY_AUTH_TOKEN=
 ```
 
 ## Installation & Setup
