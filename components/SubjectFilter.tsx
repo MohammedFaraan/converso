@@ -42,14 +42,23 @@ const SubjectFilter = () => {
 
   return (
     <Select value={subject} onValueChange={(value) => setSubject(value)}>
-      <SelectTrigger className="input capitalize">
+      <SelectTrigger 
+        className="w-full min-w-[180px] capitalize bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded-lg py-2 px-4 text-sm focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/50 focus:border-transparent transition-colors"
+        aria-label="Filter by subject"
+      >
         <SelectValue placeholder="Select subject" />
       </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="all">All Subjects</SelectItem>
+      <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded-lg shadow-lg">
+        <SelectItem value="all" className="text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+          All Subjects
+        </SelectItem>
 
         {subjects.map((subject, _) => (
-          <SelectItem key={subject} value={subject} className="capitalize">
+          <SelectItem 
+            key={subject} 
+            value={subject} 
+            className="capitalize text-sm focus:bg-gray-100 dark:focus:bg-gray-700"
+          >
             {subject}
           </SelectItem>
         ))}
