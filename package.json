@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.3",
+    "@google/genai": "^1.17.0",
     "@hookform/resolvers": "^3.3.2",
     "@jsmastery/utils": "^1.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -17,7 +18,6 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
-    "@sentry/nextjs": "^10.8.0",
     "@supabase/supabase-js": "^2.56.0",
     "@vapi-ai/web": "^2.3.9",
     "class-variance-authority": "^0.7.1",

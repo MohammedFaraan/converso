@@ -28,7 +28,6 @@ Converso is a sophisticated AI-powered voice enabled learning platform that enab
 
 ### Infrastructure
 - Vercel (Deployment)
-- Sentry (Error Tracking)
 
 ## Prerequisites
 - Node.js 18+ 
@@ -54,8 +53,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 # Vapi
 NEXT_PUBLIC_VAPI_WEB_KEY=
 
-# Sentry
-SENTRY_AUTH_TOKEN=
 ```
 
 ## Installation & Setup
@@ -155,11 +152,6 @@ session_history (
 - Efficient data caching
 - Debounced search functionality
 
-## Error Handling
-- Sentry integration for error tracking
-- Custom error boundaries
-- Graceful fallbacks
-- User-friendly error messages
 
 ## Security Measures
 - Authentication middleware

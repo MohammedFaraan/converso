@@ -62,25 +62,21 @@ export const getCompanion = async (id: string) => {
 };
 
 export const addToSessionHistory = async (companionId: string) => {
-  const { userId } = await auth();
-  if (!userId) throw new Error("User not authenticated");
-  
-  const supabase = createSupabaseClient();
-
-  const { data, error } = await supabase
-    .from("session_history")
-    .upsert(
-      { companion_id: companionId, user_id: userId },
-      { 
+    const { userId } = await auth();
+    const supabase = createSupabaseClient();
+    const { data, error } = await supabase.from('session_history')
+        .upsert({
+            companion_id: companionId,
+            user_id: userId,
+        }, { 
         onConflict: 'companion_id,user_id',
-        ignoreDuplicates: true 
-      }
-    );
-
-  if (error) throw new Error(error.message);
-
-  return data;
-};
+        ignoreDuplicates: false 
+      })
+    
+      console.log(error);
+    if(error) throw new Error(error.message);
+    return data;
+}
 
 export const getRecentSessions = async (limit = 10) => {
   const supabase = createSupabaseClient();
