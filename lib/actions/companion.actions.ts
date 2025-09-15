@@ -62,21 +62,31 @@ export const getCompanion = async (id: string) => {
 };
 
 export const addToSessionHistory = async (companionId: string) => {
-    const { userId } = await auth();
-    const supabase = createSupabaseClient();
-    const { data, error } = await supabase.from('session_history')
-        .upsert({
-            companion_id: companionId,
-            user_id: userId,
-        }, { 
-        onConflict: 'companion_id,user_id',
-        ignoreDuplicates: false 
-      })
-    
-      console.log(error);
-    if(error) throw new Error(error.message);
-    return data;
-}
+  const { userId } = await auth();
+  const supabase = createSupabaseClient();
+  const now = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from("session_history")
+    .upsert(
+      {
+        companion_id: companionId,
+        user_id: userId,
+        created_at: now,
+      },
+      {
+        onConflict: "user_id,companion_id", // 👈 composite unique constraint
+      }
+    );
+
+
+  if (error) { 
+    throw new Error(error.message);
+   }
+
+  return data;
+};
+
 
 export const getRecentSessions = async (limit = 10) => {
   const supabase = createSupabaseClient();
@@ -156,7 +166,10 @@ export const addBookmark = async (companionId: string, path: string) => {
   //   .from("bookmarks")
   //   .insert({ companion_id: companionId, user_id: userId });
 
-  const { data, error } = await supabase.from("companions").update({bookmarked: true }).eq("id", companionId);
+  const { data, error } = await supabase
+    .from("companions")
+    .update({ bookmarked: true })
+    .eq("id", companionId);
 
   if (error) throw new Error(error.message);
 
@@ -175,10 +188,10 @@ export const removeBookmark = async (companionId: string, path: string) => {
   //   .delete()
   //   .eq("companion_id", companionId)
   //   .eq("user_id", userId);
-   const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("companions")
-    .update({bookmarked: false })
-    .eq("id", companionId)
+    .update({ bookmarked: false })
+    .eq("id", companionId);
 
   if (error) throw new Error(error.message);
 

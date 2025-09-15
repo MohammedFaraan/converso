@@ -30,7 +30,7 @@ const Navbar = async () => {
             <ThemeToggle />
             <SignedOut>
               <SignInButton>
-                <button className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                <button className="inline-flex h-9 items-center justify-center curxor-pointer rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                   Sign in
                 </button>
               </SignInButton>

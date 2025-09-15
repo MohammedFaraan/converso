@@ -11,7 +11,6 @@ if (!GEMINI_API_KEY) {
   // Note: in Next.js, throwing at import time may break dev experience;
   // we prefer to check at runtime below and return 500 if missing.
 }
-console.log(GEMINI_API_KEY);
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 // Converso app persona & rules (strict: only app-support answers)
