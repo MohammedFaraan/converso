@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [{
       hostname: "img.clerk.com"
     }]
-  }
+  },
+  experimental: {
+    optimizeCss: false, // disable lightningcss
+  },
 };
 
 export default nextConfig;  
