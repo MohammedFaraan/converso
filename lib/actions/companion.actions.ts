@@ -159,7 +159,7 @@ export const newCompanionPermissions = async () => {
 };
 
 export const addBookmark = async (companionId: string, path: string) => {
-  const { userId } = await auth();
+  // const { userId } = await auth();
   const supabase = createSupabaseClient();
 
   // const { data, error } = await supabase
