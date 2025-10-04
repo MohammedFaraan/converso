@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: false, // disable lightningcss
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;  

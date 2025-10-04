@@ -9,13 +9,12 @@ import {
 } from "@/components/ui/select";
 import { subjects } from "@/constants";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@jsmastery/utils";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const SubjectFilter = () => {
   const [subject, setSubject] = useState("");
 
-  const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
 

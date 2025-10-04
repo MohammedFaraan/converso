@@ -12,7 +12,6 @@ const SearchInput = () => {
   const query = searchParams.get("topic") || "";
 
   const [searchQuery, setSearchQuery] = useState("");
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchQuery) {
@@ -34,6 +33,8 @@ const SearchInput = () => {
         }
       }
     }, 300);
+    // Cleanup function to clear timeout
+    return () => clearTimeout(delayDebounceFn);
   }, [searchQuery, pathname, router, searchParams]);
 
   return (

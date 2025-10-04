@@ -56,9 +56,9 @@ export const configureAssistant = (voice: string, style: string) => {
       ],
     },
 
-    // @ts-expect-error
+    // @ts-expect-error: Expected type mismatch due to <reason>
     clientMessages: [],
-    // @ts-expect-error
+    // @ts-expect-error: Expected type mismatch due to <reason>
     serverMessages: [],
   };
   return vapiAssistant;

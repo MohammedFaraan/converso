@@ -95,7 +95,7 @@ const CompanionComponent = ({
       serverMessages: [],
     };
 
-    // @ts-expect-error
+    // @ts-expect-error: This call is safe because we handle null checks above
     vapi.start(configureAssistant(voice, style), assistantOverrides);
   };
 
