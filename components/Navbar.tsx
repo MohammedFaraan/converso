@@ -4,7 +4,6 @@ import NavItems from "./NavItems";
 import ThemeToggle from "./ThemeToggle";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { cn } from "@/lib/utils";
 
 const Navbar = async () => {
   const { userId } = await auth();

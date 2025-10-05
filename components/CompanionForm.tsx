@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -27,7 +26,6 @@ import {createCompanion} from "@/lib/actions/companion.actions";
 import {redirect} from "next/navigation";
 import { useTheme } from "next-themes";
 import { BookOpen, Clock, Mic, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Companion is required.'}),
@@ -39,7 +37,6 @@ const formSchema = z.object({
 })
 
 const CompanionForm = () => {
-    const { theme } = useTheme();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {

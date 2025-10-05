@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import CTA from "@/components/CTA";
 
 // Animation styles
 // import "landing-page.css";
