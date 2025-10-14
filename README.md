@@ -109,6 +109,10 @@ converso/
 
 ### Database Schema
 ```sql
+
+
+
+
 companions (
   id UUID PRIMARY KEY,
   name TEXT,
@@ -126,6 +130,8 @@ session_history (
 )
 ```
 
+##
+## Built with 💖 by Mohammed Faraan
 <!-- ## API Routes
 
 ### Companions
